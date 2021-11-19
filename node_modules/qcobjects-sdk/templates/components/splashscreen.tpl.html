@@ -1,0 +1,128 @@
+<style>
+:host * {
+  box-sizing: border-box;
+}
+
+:host {
+  zoom: 1.0;
+  width: device-width;
+  margin: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  padding: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: black;
+}
+#slot-logo::slotted(img) {
+  vertical-align: middle;
+  display: block;
+  width: 100vw;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  top: 20vh;
+  bottom: 20vh;
+  position: absolute;
+  z-index: 9999999999;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  filter: blur(0em);
+  transition: filter 0.5s;
+}
+
+:host * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none;
+  /* prevent webkit from resizing text to fit */
+  -webkit-user-select: none;
+  /* prevent copy paste, to allow, change 'none' to 'text' */
+}
+
+/* FOCUS */
+:host summary:focus,
+:host a:focus,
+:host button:focus {
+  outline: none;
+}
+
+.splashscreen,
+.fullscreen-bg {
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0;
+  background-attachment: fixed;
+  background-position: center;
+  background-clip: content-box;
+  background-size: cover;
+  position: absolute;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.splashscreen .splashcontent {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.splashscreen .splashcontent p {
+  color: white;
+}
+
+video.fullscreen-bg__video {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  min-width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+  object-fit: cover;
+}
+  .splashscreen,
+  .fullscreen-bg {
+    background-image: url('{{background}}');
+  }
+
+</style>
+<div class="splashscreen">
+  <div class="fullscreen-bg splashcontent">
+    <video loop muted autoplay playsinline name="media" poster="{{background}}" class="fullscreen-bg__video" data-setup="{}" height="100%">
+      <source src="{{video_mp4}}" type="video/mp4">
+      <source src="{{video_ogg}}" type="video/ogg">
+      <source src="{{video_webm}}" type="video/webm">
+    </video>
+    <slot id="slot-logo" name="logo"></slot>
+  </div>
+</div>

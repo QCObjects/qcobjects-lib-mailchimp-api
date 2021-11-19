@@ -34,7 +34,7 @@ MAILCHIMP_API_LIST
   Import ("qcobjects-lib-mailchimp-api");
 ```
 
-5. Usage instructions: 
+4. Usage instructions: 
   
   Inside the microservice function you can use the following code:
 
@@ -60,13 +60,13 @@ Learn more about MailChimp official API in the [MailChimp Documentation website]
 
 This lib is based on the official MailChimp API (https://github.com/mailchimp/mailchimp-marketing-node)
 
-6. Test the integration
+5. Test the integration
 
 ```shell
 npm test
 ```
 
-7. Start the QCObjects HTTP2 Server
+6. Start the QCObjects HTTP2 Server
 
 ```shell
 qcobjects-server

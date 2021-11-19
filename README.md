@@ -22,11 +22,43 @@ npm i --save qcobjects-lib-mailchimp-api
 
 Above settings will bring the API Key values from the following environment variables:
 
+```
 MAILCHIMP_API_KEY
 MAILCHIMP_API_SERVER
 MAILCHIMP_API_LIST
+```
 
-Learn more about NodeMailer in the official [NodeMailer Documentation website](https://nodemailer.com/about/)
+3. In the code of your microservice, you can import the module using the Import function
+
+```javascript
+  Import ("qcobjects-lib-mailchimp-api");
+```
+
+5. Usage instructions: 
+  
+  Inside the microservice function you can use the following code:
+
+```javascript
+let microservice = this; // this is the microservice instance
+
+  Promise.all (
+    CONFIG.get("mailchimp_api").map(
+      api => mailchimpApi.subscribe(
+        mailchimpApi.parseApi(api).apiKey,
+        mailchimpApi.parseApi(api).server,
+        mailchimpApi.parseApi(api).listId,
+        formData
+      ))
+  ).then (() => {
+    microservice.done();
+  }).catch(e => {
+    logger.debug(e.toString());
+  });
+```
+
+Learn more about MailChimp official API in the [MailChimp Documentation website](https://mailchimp.com/developer/marketing/api/)
+
+This lib is based on the official MailChimp API (https://github.com/mailchimp/mailchimp-marketing-node)
 
 1. Test the integration
 
@@ -34,7 +66,7 @@ Learn more about NodeMailer in the official [NodeMailer Documentation website](h
 npm test
 ```
 
-4. Start the QCObjects HTTP2 Server
+7. Start the QCObjects HTTP2 Server
 
 ```shell
 qcobjects-server

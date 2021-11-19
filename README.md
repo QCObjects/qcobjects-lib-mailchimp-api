@@ -60,7 +60,7 @@ Learn more about MailChimp official API in the [MailChimp Documentation website]
 
 This lib is based on the official MailChimp API (https://github.com/mailchimp/mailchimp-marketing-node)
 
-1. Test the integration
+6. Test the integration
 
 ```shell
 npm test

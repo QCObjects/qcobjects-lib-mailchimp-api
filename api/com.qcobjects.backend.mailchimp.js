@@ -62,7 +62,7 @@ Package("com.qcobjects.backend.mailchimp",[
 
       const run = async () => {
         const response = await mailchimp.lists.getAllLists();
-        console.log(response);
+        return response;
       };
       return run ();
     },

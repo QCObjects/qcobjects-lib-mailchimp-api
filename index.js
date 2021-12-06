@@ -30,9 +30,11 @@
 /*eslint no-undef: "off"*/
 /*eslint no-useless-escape: "off"*/
 "use strict";
-const path = require("path");
-const absolutePath = path.resolve( __dirname, "./" );
-
-Import (absolutePath + "/api/com.qcobjects.backend.mailchimp");
-Package ("qcobjects-lib-mailchimp", Package ("com.qcobjects.backend.mailchimp"));
-Package ("qcobjects-lib-mailchimp-api", Package ("com.qcobjects.backend.mailchimp"));
+(function (){
+    const path = require("path");
+    const absolutePath = path.resolve( __dirname, "./" );
+    
+    Import (absolutePath + "/api/com.qcobjects.backend.mailchimp");
+    Package ("qcobjects-lib-mailchimp", Package ("com.qcobjects.backend.mailchimp"));
+    Package ("qcobjects-lib-mailchimp-api", Package ("com.qcobjects.backend.mailchimp"));
+})();

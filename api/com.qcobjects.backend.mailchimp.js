@@ -86,7 +86,7 @@ Package("com.qcobjects.backend.mailchimp",[
               email_address: email,
               status: "subscribed"
             };
-            if (merge_fields) {
+            if (typeof merge_fields !== "undefined") {
               mailchimp_config.merge_fields = merge_fields;
             }
 
@@ -105,6 +105,19 @@ Package("com.qcobjects.backend.mailchimp",[
       .then ((response) => {
         logger.debug(`This user ${email} is now ${response.status}.`);
       });
+    },
+
+    subscribeToAll (formData, merge_fields) {
+      return Promise.all (
+        CONFIG.get("mailchimp_api").map(
+          api => mailchimpApi.subscribe(
+            mailchimpApi.parseApi(api).apiKey,
+            mailchimpApi.parseApi(api).server,
+            mailchimpApi.parseApi(api).listId,
+            formData,
+            merge_fields
+          ))
+      );      
     }
 
   })

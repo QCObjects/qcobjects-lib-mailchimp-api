@@ -108,6 +108,7 @@ Package("com.qcobjects.backend.mailchimp",[
     },
 
     subscribeToAll (formData, merge_fields) {
+      let mailchimpApi = this;
       return Promise.all (
         CONFIG.get("mailchimp_api").map(
           api => mailchimpApi.subscribe(

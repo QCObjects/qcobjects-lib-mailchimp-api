@@ -81,7 +81,7 @@ Package("com.qcobjects.backend.mailchimp",[
 
           const subscriberHash = md5(email.toLowerCase());
 
-          async function _subscribeToMailchimp_() {
+          async function _subscribeToMailchimp_(email, listId, merge_fields) {
             var mailchimp_config = {
               email_address: email,
               status: "subscribed"
@@ -89,12 +89,15 @@ Package("com.qcobjects.backend.mailchimp",[
             if (typeof merge_fields !== "undefined") {
               mailchimp_config.merge_fields = merge_fields;
             }
-
-            const response = await mailchimp.lists.addListMember(listId, mailchimp_config);
-            resolve (response);
+            try {
+              const response = await mailchimp.lists.addListMember(listId, mailchimp_config);
+              resolve (response);
+            } catch (error) {
+              reject (error);
+            }
           }
           try {
-            _subscribeToMailchimp_();
+            _subscribeToMailchimp_(email, listId, merge_fields);
           } catch (e) {
             reject (e);
           }
@@ -118,7 +121,7 @@ Package("com.qcobjects.backend.mailchimp",[
             formData,
             merge_fields
           ))
-      );      
+      );
     }
 
   })
